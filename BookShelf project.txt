@@ -1,0 +1,152 @@
+//Array of objects
+var books = [
+    {
+        title: "Habibi",
+        stars: 4,
+        author: "Ali Jabal",
+        recommend: true
+    },
+    {
+        title: "Nabatiyeh",
+        stars: 3,
+        author: "Jacob Kafta",
+        recommend: true
+    },
+    {
+        title: "Alo Captain",
+        stars: 1,
+        author: "Karim Eid",
+        recommend: false
+    },
+];
+
+mouseClicked = function() {
+
+    //x,y Values (for shelf) to relate all objects together (didn't work)
+    var sosX = 0;
+    var sosY = 115;
+    
+    //Shelf 1
+    image(getImage("cute/WoodBlock"), sosX, sosY, 400, 20);
+    
+    //Book covers on shelf 1
+    var d = -1;
+    for (var i = 1; i < books.length + 1; i++) {
+        fill(random(0, 255), random(0, 255), random(0, 255));
+        rect(25 + d, 20, 80, 100);
+        d += 126;
+    }
+    
+    //y Position of stars
+    var yOfStars = 90;
+    
+    //Functions that get x position of stars for each book
+    var xOfStar1 = function(roro) {
+        return (34 + roro * 20);
+    };
+    
+    var xOfStar2 = function(popo) {
+        return (151 + popo * 20);
+    };
+    
+    var xOfStar3 = function(gok) {
+        return (307 + gok * 20);
+    };
+    
+    //For loop to get stars for book 1
+    for (var i = 0; i < 3; i++){
+        image(getImage("cute/Star"), xOfStar1(i), yOfStars, 20, 30);
+    }
+    
+    //For loop to get stars for book 2
+    for (var q = 0; q < 4; q++){
+        image(getImage("cute/Star"), xOfStar2(q), yOfStars, 20, 30);
+    }
+    
+    //For loop to get stars for book 3
+    for (var g = 0; g < 1; g++){
+        image(getImage("cute/Star"), xOfStar3(g), yOfStars, 20, 30);
+    }
+    
+    //Books titles' properties
+    textSize(13);
+    
+    //Positioning of books' titles
+    var o = 100;
+    for (var k = 0; k < books.length; k++){
+        fill(random(0, 255), random(0, 255), random(0, 255));
+        text(books[k].title, o - 57, 40);
+        
+        o += 120;
+    }
+    
+    //For loop for author's names
+    var u = -2;
+    for (var l = 0; l < books.length; l++) {
+        fill(random(0, 255), random(0, 255), random(0, 255));
+        text(books[l].author,  34 + u, 95);
+        u += 127;
+    }
+    
+    //For loop to place "gem" sign (recommended or not)
+    var qaz = 0;
+    for (var h = 0; h < books.length; h++) {
+        if (books[h].recommend === true) {
+            image(getImage("cute/GemGreen"), 52 + qaz, 37, 25, 40);
+            qaz += 125;
+        } else {
+            image(getImage("cute/GemOrange"), 304, 39, 25, 40);
+        }
+    }
+    
+    //Shadows for books
+    var pos = 0;
+    for (var c = 0; c < books.length; c++) {
+        image(getImage("cute/ShadowEast"), 39 + pos, -44, 75, 217);
+        pos += 126;
+    }
+
+
+};
+
+//Variables controlling position of bouncing ball + speed
+var ballX = 370;
+var ballY = 180;
+var speed = 3;
+ 
+//Bouncing ball program  
+draw = function() {
+    
+    fill(255, 255, 255);
+    noStroke();
+    rect(0, 160, 400, 240);
+    
+    var size = 30;
+
+    fill(random(0, 255), random(0, 255), random(0, 255));
+    ellipse(ballX, ballY, size, size);
+    
+    
+    ballY += speed;
+    
+    
+    if (ballY === 390) {
+        speed = -3;
+    }
+    
+    if (ballY === 177) {
+        speed = 3;
+    }
+    
+    image(getImage("creatures/BabyWinston"), 114, 303, 100, 100);
+    textSize(10);
+    fill(0, 0, 0);
+    text("WOW DAD GET ME\nA BOOK PLEASE", 179, 314);
+    image(getImage("creatures/Winston"), -24, 200, 150, 150);
+    
+    if (key.toString() === " ") {
+        textSize(13);
+        fill(77, 56, 56);
+        text("WOW KOL KHARA EBNE", 99, 200);
+    }
+};
